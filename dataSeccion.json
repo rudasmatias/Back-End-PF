@@ -1,0 +1,14 @@
+[
+  {
+    "id_seccion": 3,
+    "nombre": "AMD e Intel"
+  },
+  {
+    "id_seccion": 1,
+    "nombre": "AMD"
+  },
+  {
+    "id_seccion": 2,
+    "nombre": "Intel"
+  }
+]

@@ -1,0 +1,180 @@
+[
+  {
+    "id_categoria": 1,
+    "nombre": "Monitores",
+    "id_agrupador": 1,
+    "imagen": "monitores.jpg",
+    "orden": 2
+  },
+  {
+    "id_categoria": 2,
+    "nombre": "Notebooks",
+    "id_agrupador": 1,
+    "imagen": "laptop.jpg",
+    "orden": 21
+  },
+  {
+    "id_categoria": 3,
+    "nombre": "Procesadores",
+    "id_agrupador": 2,
+    "imagen": "Procesadores",
+    "orden": 14
+  },
+  {
+    "id_categoria": 5,
+    "nombre": "Mothers",
+    "id_agrupador": 3,
+    "imagen": "Mothers.jpg",
+    "orden": 13
+  },
+  {
+    "id_categoria": 11,
+    "nombre": "Discos Externos",
+    "id_agrupador": 6,
+    "imagen": "DiscoExterno.jpg",
+    "orden": 16
+  },
+  {
+    "id_categoria": 12,
+    "nombre": "Discos Rígidos",
+    "id_agrupador": 6,
+    "imagen": "DiscoRigido.jpg",
+    "orden": 17
+  },
+  {
+    "id_categoria": 13,
+    "nombre": "Discos Sólidos",
+    "id_agrupador": 6,
+    "imagen": "DiscoSolido.jpg",
+    "orden": 18
+  },
+  {
+    "id_categoria": 14,
+    "nombre": "Coolers Fan",
+    "id_seccion": 1,
+    "id_agrupador": 7,
+    "imagen": "CoolerFan.jpg",
+    "orden": 2
+  },
+  {
+    "id_categoria": 15,
+    "nombre": "Coolers CPU",
+    "id_agrupador": 7,
+    "imagen": "CoolerCpu.jpg",
+    "orden": 5
+  },
+  {
+    "id_categoria": 16,
+    "nombre": "Pasta Térmica",
+    "id_agrupador": 7,
+    "imagen": "PastaTermica.jpg",
+    "orden": 0
+  },
+  {
+    "id_categoria": 17,
+    "nombre": "Gabinetes",
+    "id_agrupador": 8,
+    "imagen": "discos.jpg",
+    "orden": 11
+  },
+  {
+    "id_categoria": 18,
+    "nombre": "Fuentes",
+    "id_agrupador": 9,
+    "imagen": "Fuentes",
+    "orden": 24
+  },
+  {
+    "id_categoria": 19,
+    "nombre": "Silla Gamer",
+    "id_agrupador": 10,
+    "imagen": "Silla Gamer",
+    "orden": 24
+  },
+  {
+    "id_categoria": 20,
+    "nombre": "Mousses",
+    "id_agrupador": 10,
+    "imagen": "Mouses.jpg",
+    "orden": 3
+  },
+  {
+    "id_categoria": 21,
+    "nombre": "Teclados",
+    "id_agrupador": 10,
+    "imagen": "Teclados",
+    "orden": 28
+  },
+  {
+    "id_categoria": 22,
+    "nombre": "Auriculares",
+    "id_agrupador": 10,
+    "imagen": "Silla Gamer",
+    "orden": 23
+  },
+
+  {
+    "id_categoria": 23,
+    "nombre": "Joystick",
+    "id_agrupador": 10,
+    "imagen": "Joystick",
+    "orden": 25
+  },
+  {
+    "id_categoria": 24,
+    "nombre": "Parlantes",
+    "id_agrupador": 10,
+    "imagen": "Parlantes",
+    "orden": 26
+  },
+  {
+    "id_categoria": 25,
+    "nombre": "Micrófonos",
+    "id_agrupador": 10,
+    "imagen": "Micrófonos",
+    "orden": 28
+  },
+  {
+    "id_categoria": 26,
+    "nombre": "WebCam",
+    "id_agrupador": 10,
+    "imagen": "Silla Gamer",
+    "orden": 23
+  },
+
+  {
+    "id_categoria": 27,
+    "nombre": "Cables y adaptadores",
+    "id_agrupador": 11,
+    "imagen": "Cables y adaptadores",
+    "orden": 29
+  },
+  {
+    "id_categoria": 7,
+    "nombre": "Placas de Video GeForce",
+    "id_agrupador": 4,
+    "imagen": "Placas_Video_Nvidia.jpg",
+    "orden": 4
+  },
+  {
+    "id_categoria": 8,
+    "nombre": "Placas de Video Radeon AMD",
+    "id_agrupador": 4,
+    "imagen": "Placas_de_Video_Radeon.jpg",
+    "orden": 22
+  },
+  {
+    "id_categoria": 9,
+    "nombre": "Memorias",
+    "id_agrupador": 5,
+    "imagen": "Momorias.jpeg",
+    "orden": 8
+  },
+  {
+    "id_categoria": 10,
+    "nombre": "Memorias Notebooks",
+    "id_agrupador": 5,
+    "imagen": "MemoriasNotebooks.jpeg",
+    "orden": 8
+  }
+]

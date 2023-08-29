@@ -1,0 +1,46 @@
+[
+  {
+    "id_agrupador": 1,
+    "nombre": "Pantallas"
+  },
+  {
+    "id_agrupador": 2,
+    "nombre": "Procesadores"
+  },
+  {
+    "id_agrupador": 3,
+    "nombre": "Mothers"
+  },
+  {
+    "id_agrupador": 4,
+    "nombre": "Placas de Video"
+  },
+  {
+    "id_agrupador": 5,
+    "nombre": "Memorias"
+  },
+  {
+    "id_agrupador": 6,
+    "nombre": "Almacenamiento"
+  },
+  {
+    "id_agrupador": 7,
+    "nombre": "Refrigeración"
+  },
+  {
+    "id_agrupador": 8,
+    "nombre": "Gabinetes"
+  },
+  {
+    "id_agrupador": 9,
+    "nombre": "Fuentes"
+  },
+  {
+    "id_agrupador": 10,
+    "nombre": "Perisféricos"
+  },
+  {
+    "id_agrupador": 11,
+    "nombre": "Conectividad"
+  }
+]
