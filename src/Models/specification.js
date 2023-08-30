@@ -1,22 +1,25 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 const Crud = require("./Crud");
 
-class Category extends Crud {
+class Specification extends Crud {
   constructor(sequelize) {
     super(
       sequelize.define(
-        "Categories",
+        "Specification",
         {
-          id_categoria: {
+          id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             allowNull: false,
+            autoIncrement: true,
           },
-          nombre: {
+          name: {
             type: DataTypes.STRING,
+            allowNull: false,
           },
-          id_agrupador: {
-            type: DataTypes.INTEGER,
+          value: {
+            type: DataTypes.STRING,
+            allowNull: false,
           },
         },
         {
@@ -26,4 +29,5 @@ class Category extends Crud {
     );
   }
 }
-module.exports = Category;
+
+module.exports = Specification;

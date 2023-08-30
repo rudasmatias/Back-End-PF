@@ -6856,7 +6856,7 @@
         "alto": "492 mm",
         "profundidad": "475 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120mm, Fan 140 mm",
         "cooler_incluidos": 3,
         "cooler_soportados": 7,
         "iluminacion": "RGB"
@@ -6905,7 +6905,7 @@
         "alto": "480 mm",
         "profundidad": "440 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120mm, Fan 140 mm",
         "cooler_incluidos": 3,
         "cooler_soportados": 6,
         "iluminacion": "RGB"
@@ -6952,7 +6952,7 @@
         "alto": "440 mm",
         "profundidad": "400 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120mm"],
+        "cooler_compatible": "Fan 120mm",
         "cooler_incluidos": 4,
         "cooler_soportados": 6,
         "iluminacion": "ARGB"
@@ -6991,7 +6991,7 @@
         "alto": "450 mm",
         "profundidad": "406 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120mm, Fan 140 mm",
         "cooler_incluidos": 4,
         "cooler_soportados": 8,
         "iluminacion": "FRGB"
@@ -7038,7 +7038,7 @@
         "alto": "513 mm",
         "profundidad": "471 mm",
         "usb": 4,
-        "cooler_compatible": ["Fan 120mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120mm, Fan 140 mm",
         "cooler_incluidos": 0,
         "cooler_soportados": 10,
         "iluminacion": "ARGB"
@@ -7085,7 +7085,7 @@
         "alto": "470 mm",
         "profundidad": "380 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120mm, Fan 140 mm",
         "cooler_incluidos": 3,
         "cooler_soportados": 6,
         "iluminacion": "ARGB"
@@ -7128,7 +7128,7 @@
         "alto": "494 mm",
         "profundidad": "424 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120mm,Fan 140 mm",
         "cooler_incluidos": 1,
         "cooler_soportados": 7,
         "iluminacion": "No"
@@ -7175,7 +7175,7 @@
         "alto": "450 mm",
         "profundidad": "395 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm"],
+        "cooler_compatible": "Fan 120 mm",
         "cooler_incluidos": 3,
         "cooler_soportados": 6,
         "iluminacion": "RGB"
@@ -7222,7 +7222,7 @@
         "alto": "467 mm",
         "profundidad": "455 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm, Fan 140 mm",
         "cooler_incluidos": 3,
         "cooler_soportados": 6,
         "iluminacion": "RGB"
@@ -7269,7 +7269,7 @@
         "alto": "410 mm",
         "profundidad": "440 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm"],
+        "cooler_compatible": "Fan 120 mm",
         "cooler_incluidos": 1,
         "cooler_soportados": 6,
         "iluminacion": "ARGB "
@@ -7316,7 +7316,7 @@
         "alto": "410 mm",
         "profundidad": "440 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm"],
+        "cooler_compatible": "Fan 120 mm",
         "cooler_incluidos": 1,
         "cooler_soportados": 6,
         "iluminacion": "ARGB "
@@ -7363,7 +7363,7 @@
         "alto": "423 mm",
         "profundidad": "400 mm",
         "usb": 1,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm, Fan 140 mm",
         "cooler_incluidos": 1,
         "cooler_soportados": 6,
         "iluminacion": "ARGB"
@@ -7410,7 +7410,7 @@
         "alto": "426 mm",
         "profundidad": "482 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm,Fan 140 mm",
         "cooler_incluidos": 4,
         "cooler_soportados": 6,
         "iluminacion": "ARGB"
@@ -7457,7 +7457,7 @@
         "alto": "507 mm",
         "profundidad": "500 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm,Fan 140 mm",
         "cooler_incluidos": 3,
         "cooler_soportados": 6,
         "iluminacion": "RGB"
@@ -7504,7 +7504,7 @@
         "alto": "351 mm",
         "profundidad": "398 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm,Fan 140 mm",
         "cooler_incluidos": 2,
         "cooler_soportados": 6,
         "iluminacion": "ARGB "
@@ -7551,7 +7551,7 @@
         "alto": "577 mm",
         "profundidad": "586 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm, Fan 140 mm",
         "cooler_incluidos": 3,
         "cooler_soportados": 11,
         "iluminacion": "RGB"
@@ -7598,7 +7598,7 @@
         "alto": "519 mm",
         "profundidad": "544 mm",
         "usb": 3,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm, Fan 140 mm",
         "cooler_incluidos": 2,
         "cooler_soportados": 9,
         "iluminacion": "No"
@@ -7645,7 +7645,7 @@
         "alto": "426 mm",
         "profundidad": "362 mm",
         "usb": 3,
-        "cooler_compatible": ["Fan 120 mm"],
+        "cooler_compatible": "Fan 120 mm",
         "cooler_incluidos": 1,
         "cooler_soportados": 6,
         "iluminacion": "ARGB"
@@ -7688,7 +7688,7 @@
         "alto": "596 mm",
         "profundidad": "537 mm",
         "usb": 3,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm, Fan 140 mm",
         "cooler_incluidos": 0,
         "cooler_soportados": 9,
         "iluminacion": "No"
@@ -7727,7 +7727,7 @@
         "alto": "447 mm",
         "profundidad": "380 mm",
         "usb": 3,
-        "cooler_compatible": ["Fan 120 mm"],
+        "cooler_compatible": "Fan 120 mm",
         "cooler_incluidos": 1,
         "cooler_soportados": 6,
         "iluminacion": "ARGB"
@@ -7774,7 +7774,7 @@
         "alto": "523 mm",
         "profundidad": "526 mm",
         "usb": 3,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm, Fan 140 mm",
         "cooler_incluidos": 4,
         "cooler_soportados": 10,
         "iluminacion": "No"
@@ -7821,7 +7821,7 @@
         "alto": "488 mm",
         "profundidad": "479 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm, Fan 140 mm",
         "cooler_incluidos": 5,
         "cooler_soportados": 9,
         "iluminacion": "ARGB"
@@ -7868,7 +7868,7 @@
         "alto": "644 mm",
         "profundidad": "285 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm"],
+        "cooler_compatible": "Fan 120 mm",
         "cooler_incluidos": 0,
         "cooler_soportados": 6,
         "iluminacion": "No"
@@ -7915,7 +7915,7 @@
         "alto": "644 mm",
         "profundidad": "285 mm",
         "usb": 2,
-        "cooler_compatible": ["Fan 120 mm", "Fan 140 mm"],
+        "cooler_compatible": "Fan 120 mm, Fan 140 mm",
         "cooler_incluidos": 0,
         "cooler_soportados": 6,
         "iluminacion": "No"

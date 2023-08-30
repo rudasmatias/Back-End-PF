@@ -1,4 +1,11 @@
-const { Products, Categories, Seccion, Agrupador } = require("../db");
+const {
+  Products,
+  Categories,
+  Seccion,
+  MacroCategory,
+  Specification,
+  Images,
+} = require("../db");
 const { v4: uuidv4 } = require("uuid");
 const path = require("path");
 const fs = require("fs");
@@ -13,9 +20,12 @@ const DB_connect = async () => {
     const categoryRawData = fs.readFileSync(categoryFilePath);
     const categoryData = JSON.parse(categoryRawData);
 
-    const agrupadorFilePath = path.join(__dirname, "../../dataAgrupador.json");
-    const agrupadorRawData = fs.readFileSync(agrupadorFilePath);
-    const agrupadorData = JSON.parse(agrupadorRawData);
+    const macroCategoryFilePath = path.join(
+      __dirname,
+      "../../dataAgrupador.json"
+    );
+    const macroCategoryRawData = fs.readFileSync(macroCategoryFilePath);
+    const macroCategoryData = JSON.parse(macroCategoryRawData);
 
     const seccionFilePath = path.join(__dirname, "../../dataSeccion.json");
     const seccionRawData = fs.readFileSync(seccionFilePath);
@@ -28,71 +38,8 @@ const DB_connect = async () => {
 
     const uniqueProducts = new Set();
     const uniqueCategories = new Set();
-
-    for (const item of productData.results) {
-      const nombre = item.nombre;
-
-      if (!uniqueProducts.has(nombre)) {
-        uniqueProducts.add(nombre);
-
-        const productData = {
-          id_producto: item.id_producto,
-          id_categoria: item.id_categoria,
-          id_seccion: item?.id_seccion || null,
-          destacado: item.destacado || null,
-          nombre: item.nombre,
-          precio: item.precio || null,
-          vendible: item.vendible || false,
-          stock: item.stock || null,
-          garantia: item.garantia || null,
-          iva: item.iva || null,
-          imagenes: item.imagenes || [],
-          caracteristicas: item?.caracteristicas,
-        };
-
-        const [product, created] = await Products.findOrCreate({
-          where: { nombre },
-          defaults: productData,
-        });
-
-        // Access product characteristics directly
-        // const productCharacteristics = {
-        //   color: item?.caracteristicas?.color || null,
-        //   botones: item?.caracteristicas?.botones || null,
-        //   iluminacion: item?.caracteristicas?.iluminacion || false,
-        //   usb: item?.caracteristicas?.usb || false,
-        //   dpi_min: item?.caracteristicas?.dpi_min || null,
-        //   dpi_max: item?.caracteristicas?.dpi_max || null,
-        //   largo_cable: item?.caracteristicas?.largo_cable || null,
-        //   curvo: item?.caracteristicas?.curvo || false,
-        //   consumo: item?.caracteristicas?.consumo || null,
-        //   pulgadas: item?.caracteristicas?.pulgadas || null,
-        //   parlantes: item?.caracteristicas?.parlantes || null,
-        //   control_remoto: item?.caracteristicas?.control_remoto || false,
-        //   entrada_hdmi: item?.caracteristicas?.entrada_hdmi || null,
-        //   webcam: item?.caracteristicas?.webcam || false,
-        //   ram: item?.caracteristicas?.ram || null,
-        //   capacidad: item?.caracteristicas?.capacidad || null,
-        //   modelo: item?.caracteristicas?.modelo || null,
-        //   familia: item?.caracteristicas?.familia || null,
-        //   socket: item?.caracteristicas?.socket || null,
-        //   frecuencia: item?.caracteristicas?.frecuencia || null,
-        //   nucleos: item?.caracteristicas?.nucleos || null,
-        //   cooler: item?.caracteristicas?.cooler || false,
-        //   cache: item?.caracteristicas?.cache || null,
-        //   plataforma: item?.caracteristicas?.plataforma || null,
-        //   chipset: item?.caracteristicas?.chipset || null,
-        //   placa_sonido: item?.caracteristicas?.placa_sonido || null,
-        //   wifi: item?.caracteristicas?.wifi || false,
-        //   cantidad_memorias: item?.caracteristicas?.cantidad_memorias || null,
-        //   tipo_memoria: item?.caracteristicas?.tipo_memoria || null,
-        // };
-      }
-    }
-
     for (const categoryItem of categoryData) {
-      const { id_categoria, nombre, id_agrupador, imagen, orden } =
-        categoryItem;
+      const { id_categoria, nombre, id_agrupador } = categoryItem;
 
       if (!uniqueCategories.has(nombre)) {
         uniqueCategories.add(nombre);
@@ -102,17 +49,62 @@ const DB_connect = async () => {
           defaults: {
             nombre,
             id_agrupador,
-            imagen,
-            orden,
           },
         });
       }
     }
 
-    for (const agrupadorItem of agrupadorData) {
-      const { id_agrupador, nombre } = agrupadorItem;
+    for (const item of productData.results) {
+      const nombre = item.nombre;
+      let specs = new Array();
+      //   console.log(typeof product.caracteristicas);
+      //   console.log(product.nombre, " ", product.caracteristicas);
+      if (item.caracteristicas) {
+        for (const caracteristica in item.caracteristicas) {
+          const [newSpec, created] = await Specification.findOrCreate({
+            where: {
+              name: caracteristica,
+              value: item.caracteristicas[caracteristica],
+            },
+          });
+          specs.push(newSpec.id);
+        }
+      }
+      if (!uniqueProducts.has(nombre)) {
+        uniqueProducts.add(nombre);
+        const id_categoria = item.id_categoria;
+        const productData = {
+          id_producto: item.id_producto,
+          nombre: item.nombre,
+          calificacion: item.destacado || null,
+          precio: item.precio || null,
+          descuento: 0,
+          vendible: item.vendible || false,
+          stock: item.stock || null,
+          garantia: item.garantia || null,
+          iva: item.iva || null,
+          id_categoria,
+        };
 
-      await Agrupador.findOrCreate({
+        const [product, created] = await Products.findOrCreate({
+          where: { nombre },
+          defaults: productData,
+        });
+        for (const image of item.imagenes) {
+          //*Lógica para crear registro de imagenes
+          const imageData = { url: image.ruta, id_product: item.id_producto };
+          await Images.create(imageData);
+        }
+        if (created) {
+          await product.addSpecifications(specs);
+        }
+      }
+    }
+
+    for (const macroCategoryItem of macroCategoryData) {
+      const { id_agrupador, nombre } = macroCategoryItem;
+
+      await MacroCategory.findOrCreate({
         where: { id_agrupador },
         defaults: {
           nombre: nombre,
@@ -134,7 +126,7 @@ const DB_connect = async () => {
     await Products.sync();
     await Categories.sync();
     await Seccion.sync();
-    await Agrupador.sync();
+    await MacroCategory.sync();
 
     console.log("♥ Database Created... ♥");
   } catch (error) {

@@ -6,6 +6,7 @@
 */
 
 const { DataTypes } = require("sequelize");
+const Crud = require("./Crud");
 
 /*
 ? Exporta una función anónima que toma un objeto sequelize como parámetro
@@ -14,40 +15,46 @@ const { DataTypes } = require("sequelize");
 ? Se establece timestapms deshabilitando automáticamente los campos de marca de tiempo (createdAt y updatedAt) en el modelo "User".
 */
 
-module.exports = (sequelize) => {
-  sequelize.define(
-    "Users",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: DataTypes.STRING,
-        unique: true,
-        validate: {
-          isEmail: true,
+class User extends Crud {
+  constructor(sequelize) {
+    super(
+      sequelize.define(
+        "Users",
+        {
+          id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+          },
+          username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          email: {
+            type: DataTypes.STRING,
+            unique: true,
+            validate: {
+              isEmail: true,
+            },
+          },
+          password: {
+            type: DataTypes.STRING,
+          },
+          firstName: {
+            type: DataTypes.STRING,
+          },
+          lastName: {
+            type: DataTypes.STRING,
+          },
+          phoneNumber: {
+            type: DataTypes.STRING,
+            allowNull: true,
+          },
         },
-      },
-      password: {
-        type: DataTypes.STRING,
-      },
-      firstName: {
-        type: DataTypes.STRING,
-      },
-      lastName: {
-        type: DataTypes.STRING,
-      },
-      phoneNumber: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-    },
-    { timestamps: false }
-  );
-};
+        { timestamps: false }
+      )
+    );
+  }
+}
+
+module.exports = User;
