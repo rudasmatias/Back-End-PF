@@ -1,18 +1,13 @@
-/* 
-! ESTE ARCHIVO DEFINE UN CONTROLADOR PARA BUSCAR PRODUCTOS POR SU NOMBRE */
-
 const { Products, Specification, SpecificationValue, Images } = require("../../db");
 const { Op } = require("sequelize");
 
-const getProductByName = async (req, res) => {
+const getProductsByCalificacion = async (req, res) => {
   try {
-    const { nombre } = req.query;
-
+    
     const searchProduct = await Products.findAll({
       where: {
         [Op.or]: [
-          { nombre: { [Op.eq]: nombre } },
-          { nombre: { [Op.iLike]: `%${nombre}%` } },
+          { calificacion: { [Op.gte]: 4.5 } }
         ],
       },
       include: [{ model: SpecificationValue, attributes: ['value', 'id'], include: [{model: Specification, attributes: ['name', 'id_specification']}], through: {attributes: []}}, { model: Images, attributes: ['url']}] }
@@ -29,4 +24,4 @@ const getProductByName = async (req, res) => {
   }
 };
 
-module.exports = getProductByName;
+module.exports = getProductsByCalificacion;

@@ -74,7 +74,7 @@ const DB_connect = async () => {
             await SpecificationValue.findOrCreate({
               where: {
                 id_specification: newSpec.id_specification,
-                value: item.caracteristicas[caracteristica],
+                value: item.caracteristicas[caracteristica].toString(),
               },
             });
           specsValues.push(newSpecValue.id);
