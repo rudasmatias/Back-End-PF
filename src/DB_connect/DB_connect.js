@@ -89,7 +89,7 @@ const DB_connect = async () => {
         uniqueProducts.add(nombre);
         const id_categoria = item.id_categoria;
         const productData = {
-          id_producto: item.id_producto,
+          // id_producto: item.id_producto,
           nombre: item.nombre,
           calificacion: item.destacado || null,
           precio: item.precio || null,
@@ -106,7 +106,10 @@ const DB_connect = async () => {
         });
         for (const image of item.imagenes) {
           //*Lógica para crear registro de imagenes
-          const imageData = { url: image.ruta, id_product: item.id_producto };
+          const imageData = {
+            url: image.ruta,
+            id_product: product.id_producto,
+          };
           await Images.create(imageData);
         }
         if (created) {
