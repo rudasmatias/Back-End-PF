@@ -1,0 +1,1 @@
+const { specificaionModel } = require("../../db");

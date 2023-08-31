@@ -4,13 +4,13 @@ const usersRouter = require("./Users/UsersRouter");
 const productsRouter = require("./Products/ProductsRouter");
 const categoriesRouter = require("./Categories/CategoriesRouter");
 const seccionRouter = require("./Seccion/SeccionRouter");
-const aggregatorRouter = require("./Aggregator/AggregatorRouter");
+const macroCategoryRouter = require("./MacroCategory/MacroCategory.js");
 
 router.use("/users", usersRouter);
 router.use("/productos", productsRouter);
 router.use("/categorias", categoriesRouter);
 router.use("/seccion", seccionRouter);
-router.use("/agrupador", aggregatorRouter)
+router.use("/macroCategories", macroCategoryRouter);
 
 module.exports = router;
 
