@@ -1,4 +1,5 @@
 const {
+  Users,
   Products,
   Categories,
   Seccion,
@@ -32,6 +33,10 @@ const DB_connect = async () => {
     const seccionFilePath = path.join(__dirname, "../../dataSeccion.json");
     const seccionRawData = fs.readFileSync(seccionFilePath);
     const seccionData = JSON.parse(seccionRawData);
+
+    const usersFilePath = path.join(__dirname, "../../dataUsers.json");
+    const usersRawData = fs.readFileSync(usersFilePath);
+    const usersData = JSON.parse(usersRawData);
 
     if (!productData.results || !categoryData) {
       console.log("No results found in the data.");
@@ -132,6 +137,29 @@ const DB_connect = async () => {
       });
     }
 
+    for (const usersItem of usersData) {
+      const {
+        // id,
+        username,
+        email,
+        password,
+        firstName,
+        lastName,
+        phoneNumber,
+      } = usersItem;
+
+      await Users.findOrCreate({
+        where: { email, username },
+        defaults: {
+          password,
+          firstName,
+          lastName,
+          phoneNumber,
+        },
+      });
+    }
+
+    await Users.sync();
     await Products.sync();
     await Categories.sync();
     await Seccion.sync();
