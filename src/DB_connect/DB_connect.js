@@ -4,11 +4,13 @@ const {
   Seccion,
   MacroCategory,
   Specification,
+  SpecificationValue,
   Images,
 } = require("../db");
 const { v4: uuidv4 } = require("uuid");
 const path = require("path");
 const fs = require("fs");
+const { where } = require("sequelize");
 
 const DB_connect = async () => {
   try {
@@ -56,7 +58,8 @@ const DB_connect = async () => {
 
     for (const item of productData.results) {
       const nombre = item.nombre;
-      let specs = new Array();
+      let specsNames = new Object();
+      let specsValues = new Array();
       //   console.log(typeof product.caracteristicas);
       //   console.log(product.nombre, " ", product.caracteristicas);
       if (item.caracteristicas) {
@@ -64,10 +67,17 @@ const DB_connect = async () => {
           const [newSpec, created] = await Specification.findOrCreate({
             where: {
               name: caracteristica,
-              value: item.caracteristicas[caracteristica],
             },
           });
-          specs.push(newSpec.id);
+          specsNames[newSpec.name] = newSpec.id;
+          const [newSpecValue, valueCreated] =
+            await SpecificationValue.findOrCreate({
+              where: {
+                id_specification: newSpec.id_specification,
+                value: item.caracteristicas[caracteristica],
+              },
+            });
+          specsValues.push(newSpecValue.id);
         }
       }
       if (!uniqueProducts.has(nombre)) {
@@ -79,7 +89,6 @@ const DB_connect = async () => {
           calificacion: item.destacado || null,
           precio: item.precio || null,
           descuento: 0,
-          vendible: item.vendible || false,
           stock: item.stock || null,
           garantia: item.garantia || null,
           iva: item.iva || null,
@@ -96,7 +105,7 @@ const DB_connect = async () => {
           await Images.create(imageData);
         }
         if (created) {
-          await product.addSpecifications(specs);
+          await product.addSpecificationValues(specsValues);
         }
       }
     }
@@ -127,10 +136,13 @@ const DB_connect = async () => {
     await Categories.sync();
     await Seccion.sync();
     await MacroCategory.sync();
+    await Specification.sync();
+    await SpecificationValue.sync();
+    await Images.sync();
 
     console.log("♥ Database Created... ♥");
   } catch (error) {
-    console.log("An error occurred:", error.message);
+    console.log("An error occurred:", error);
   }
 };
 

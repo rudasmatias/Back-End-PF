@@ -73,6 +73,7 @@ const {
   Seccion,
   MacroCategory,
   Specification,
+  SpecificationValue,
   Images,
 } = sequelize.models;
 
@@ -85,15 +86,21 @@ Images.belongsTo(Products, { foreignKey: "id_product" });
 // Products.belongsTo(Seccion, { foreignKey: "SeccionIdSeccion" });
 // Seccion.hasMany(Products);
 
-Products.belongsToMany(Specification, {
-  through: "product-specification",
+Products.belongsToMany(SpecificationValue, {
+  through: "product-specificationValue",
   timestamps: false,
 });
-Specification.belongsToMany(Products, {
-  through: "product-specification",
+SpecificationValue.belongsToMany(Products, {
+  through: "product-specificationValue",
   timestamps: false,
 });
 
+Specification.hasMany(SpecificationValue, {
+  foreignKey: "id_specification",
+});
+SpecificationValue.belongsTo(Specification, {
+  foreignKey: "id_specification",
+});
 // Products.belongsTo(Agrupador, { foreignKey: "AgrupadorIdAgrupador" });
 // Agrupador.hasMany(Products);
 

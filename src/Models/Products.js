@@ -35,10 +35,6 @@ class Product extends Crud {
               min: 0,
             },
           },
-          vendible: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-          },
           stock: {
             type: DataTypes.INTEGER,
           },
@@ -54,7 +50,7 @@ class Product extends Crud {
           },
         },
         {
-          timestamps: false,
+          paranoid: true,
         }
       )
     );
