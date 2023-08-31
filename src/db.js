@@ -49,7 +49,7 @@ fs.readdirSync(path.join(__dirname, "/models"))
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
   )
   .forEach((file) => {
-    const modelName = file.replace(".js", "") + "Model";
+    const modelName = file.replace(".js", "").toLowerCase() + "Model";
     const Model = require(path.join(__dirname, "/models", file));
     modelInstances[modelName] = new Model(sequelize);
   });
