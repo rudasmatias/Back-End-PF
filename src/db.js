@@ -83,9 +83,6 @@ Products.belongsTo(Categories, { foreignKey: "id_categoria" });
 Products.hasMany(Images, { foreignKey: "id_product" });
 Images.belongsTo(Products, { foreignKey: "id_product" });
 
-// Products.belongsTo(Seccion, { foreignKey: "SeccionIdSeccion" });
-// Seccion.hasMany(Products);
-
 Products.belongsToMany(SpecificationValue, {
   through: "product-specificationValue",
   timestamps: false,
@@ -101,6 +98,10 @@ Specification.hasMany(SpecificationValue, {
 SpecificationValue.belongsTo(Specification, {
   foreignKey: "id_specification",
 });
+
+//*Relación MacroCategory-Categories
+// MacroCategory.hasMany(Categories, {foreignKey: id_macroCategory})
+// Categories.belongsTo(MacroCategory, {foreignKey: id_macroCategory})
 // Products.belongsTo(Agrupador, { foreignKey: "AgrupadorIdAgrupador" });
 // Agrupador.hasMany(Products);
 
