@@ -5,6 +5,7 @@ const getProductById = require("../../Controllers/Products/getProductById");
 const getProductByName = require("../../Controllers/Products/getProductByName");
 const getProductsByCalificacion = require("../../Controllers/Products/getProductsByCalificacion");
 const postProducts = require("../../Controllers/Products/postProducts");
+const updateProducts = require("../../Controllers/Products/updateProducts");
 
 
 
@@ -18,5 +19,7 @@ productsRouter.get("/calificacion", getProductsByCalificacion);
 productsRouter.get("/:id_producto", getProductById);
 
 productsRouter.post("/", postProducts);
+
+productsRouter.put("/:id_producto", updateProducts);
 
 module.exports = productsRouter;
