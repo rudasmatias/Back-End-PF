@@ -4,7 +4,7 @@ const productsRouter = require("./Products/ProductsRouter");
 const categoriesRouter = require("./Categories/CategoriesRouter");
 const seccionRouter = require("./Seccion/SeccionRouter");
 // <<<<<<< HEAD
-const macroCategoryRouter = require("./MacroCategory/MacroCategory.js");
+// const macroCategoryRouter = require("./MacroCategory/MacroCategory.js");
 const favoritosRouter = require("./Favoritos/FavoritosRouter");
 // =======
 const macroCategoryRouter = require("./MacroCategory/MacroCategoryRouter.js");
