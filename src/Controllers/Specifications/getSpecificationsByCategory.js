@@ -13,7 +13,7 @@ const getSpecByCategory = async (req, res) => {
   try {
     const { id } = req.params;
     const specs = await getSpecsByCategoryController(id);
-    const response = { message: "todo ok", specifications: specs };
+    // const response = { message: "todo ok", specifications: specs };
     res.status(200).json(specs);
   } catch (error) {
     res.status(400).send(error.message);
