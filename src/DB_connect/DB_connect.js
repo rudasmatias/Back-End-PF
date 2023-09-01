@@ -45,6 +45,16 @@ const DB_connect = async () => {
 
     const uniqueProducts = new Set();
     const uniqueCategories = new Set();
+
+    for (const macroCategoryItem of macroCategoryData) {
+      const { id_agrupador, nombre } = macroCategoryItem;
+      await MacroCategory.findOrCreate({
+        where: { id_agrupador },
+        defaults: {
+          nombre: nombre,
+        },
+      });
+    }
     for (const categoryItem of categoryData) {
       const { id_categoria, nombre, id_agrupador } = categoryItem;
 
@@ -52,10 +62,10 @@ const DB_connect = async () => {
         uniqueCategories.add(nombre);
 
         await Categories.findOrCreate({
-          where: { id_categoria: id_categoria },
+          where: { id_categoria },
           defaults: {
             nombre,
-            id_agrupador,
+            id_macroCategory: id_agrupador,
           },
         });
       }
@@ -63,10 +73,10 @@ const DB_connect = async () => {
 
     for (const item of productData.results) {
       const nombre = item.nombre;
-      let specsNames = new Object();
-      let specsValues = new Array();
       //   console.log(typeof product.caracteristicas);
       //   console.log(product.nombre, " ", product.caracteristicas);
+      let specs = new Array();
+      let specsValues = new Array();
       if (item.caracteristicas) {
         for (const caracteristica in item.caracteristicas) {
           const [newSpec, created] = await Specification.findOrCreate({
@@ -74,7 +84,8 @@ const DB_connect = async () => {
               name: caracteristica,
             },
           });
-          specsNames[newSpec.name] = newSpec.id;
+          // console.log(newSpec.id_specification);
+          specs.push(newSpec.id_specification);
           const [newSpecValue, valueCreated] =
             await SpecificationValue.findOrCreate({
               where: {
@@ -104,6 +115,11 @@ const DB_connect = async () => {
           where: { nombre },
           defaults: productData,
         });
+        await Categories.findOne({ where: { id_categoria } }).then(
+          (category) => {
+            category.addSpecification(specs);
+          }
+        );
         for (const image of item.imagenes) {
           //*Lógica para crear registro de imagenes
           const imageData = {
@@ -116,17 +132,6 @@ const DB_connect = async () => {
           await product.addSpecificationValues(specsValues);
         }
       }
-    }
-
-    for (const macroCategoryItem of macroCategoryData) {
-      const { id_agrupador, nombre } = macroCategoryItem;
-
-      await MacroCategory.findOrCreate({
-        where: { id_agrupador },
-        defaults: {
-          nombre: nombre,
-        },
-      });
     }
 
     for (const seccionItem of seccionData) {

@@ -1,16 +1,19 @@
 const express = require("express");
-const router = express.Router();
 const usersRouter = require("./Users/UsersRouter");
 const productsRouter = require("./Products/ProductsRouter");
 const categoriesRouter = require("./Categories/CategoriesRouter");
 const seccionRouter = require("./Seccion/SeccionRouter");
-const macroCategoryRouter = require("./MacroCategory/MacroCategory.js");
+const macroCategoryRouter = require("./MacroCategory/MacroCategoryRouter.js");
+const specificationRouter = require("./Specifications/SpecificationRouter");
+
+const router = express.Router();
 
 router.use("/users", usersRouter);
 router.use("/productos", productsRouter);
 router.use("/categorias", categoriesRouter);
 router.use("/seccion", seccionRouter);
 router.use("/macroCategories", macroCategoryRouter);
+router.use("/specifications", specificationRouter);
 
 module.exports = router;
 

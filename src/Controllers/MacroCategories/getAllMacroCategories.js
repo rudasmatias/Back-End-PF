@@ -15,7 +15,7 @@ const getAllMacroCategories = async (req, res) => {
     if (!macroCategories) throw Error("Aggregators Not Found");
     const response = { message: "todo ok", macroCategories };
 
-    return res.status(200).json(response);
+    return res.status(200).json(macroCategories);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
