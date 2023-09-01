@@ -10,7 +10,7 @@ const deleteUser = require("../../Controllers/Users/deleteUser");
 
 usersRouter.get("/", getAllUsers);  // ? OK
 
-usersRouter.post("/", createUser);   // ?
+usersRouter.post("/", createUser);   // ? OK
 
 usersRouter.get("/profile", getUserByUsername);   // ? OK
 
@@ -18,9 +18,8 @@ usersRouter.get("/:id", getUserById);   // ? OK
 
 usersRouter.post("/login", getUserByEmailAndPassword);   // ? OK
 
- 
 usersRouter.put("/:id", updateUser);   // ? OK
 
-usersRouter.delete("/:id", deleteUser);    // ? 
+usersRouter.delete("/:id", deleteUser);    // ? OK
 
 module.exports = usersRouter;

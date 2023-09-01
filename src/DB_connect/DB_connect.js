@@ -7,6 +7,7 @@ const {
   Specification,
   SpecificationValue,
   Images,
+  Favoritos,
 } = require("../db");
 const { v4: uuidv4 } = require("uuid");
 const path = require("path");
@@ -162,6 +163,7 @@ const DB_connect = async () => {
       });
     }
 
+    await Favoritos.sync();
     await Users.sync();
     await Products.sync();
     await Categories.sync();

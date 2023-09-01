@@ -4,7 +4,7 @@ const DB_connect = require("./src/DB_connect/DB_connect");
 const PORT = 3001;
 
 conn
-  .sync({ force: true })
+  .sync({ force: false })
   .then(async () => {
     await DB_connect();
     server.listen(PORT, () => {
