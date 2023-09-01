@@ -13,7 +13,7 @@ const getAllCategories = async (req, res) => {
   try {
     const categories = await getAllCategoriesController();
     // console.log(categories);
-    const response = { message: "todo ok", categories };
+    const response = { categories };
 
     if (!categories) throw Error("Products Not Found");
 

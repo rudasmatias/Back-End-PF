@@ -100,6 +100,7 @@ SpecificationValue.belongsTo(Specification, {
   foreignKey: "id_specification",
 });
 
+// <<<<<<< HEAD
 Products.belongsToMany(Users, { through: Favoritos });
 Favoritos.belongsTo(Products);
 
@@ -111,6 +112,19 @@ Favoritos.belongsTo(Users);
 // Categories.belongsTo(MacroCategory, {foreignKey: id_macroCategory})
 // Products.belongsTo(Agrupador, { foreignKey: "AgrupadorIdAgrupador" });
 // Agrupador.hasMany(Products);
+
+MacroCategory.hasMany(Categories, { foreignKey: "id_macroCategory" });
+Categories.belongsTo(MacroCategory, { foreignKey: "id_macroCategory" });
+
+Categories.belongsToMany(Specification, {
+  through: "category-specification",
+  timestamps: false,
+});
+Specification.belongsToMany(Categories, {
+  through: "category-specification",
+  timestamps: false,
+});
+// >>>>>>> 5e37f79897ef70ae12f8c6a78805ff2750699383
 
 /*
 ! Exporto los modelos para que puedan ser utilizados en otros archivos de la aplicación */
