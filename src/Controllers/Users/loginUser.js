@@ -7,7 +7,7 @@ const loginUser = async (req, res) => {
     const user = await Users.findOne({ where: userData });
     if (!user)
       res.status(403).json({ message: "Usuario o contraseña incorrectos" });
-    const token = jsw.sign({ user }, process.env.SECRET_KEY, {
+    const token = jsw.sign({ ...user }, process.env.SECRET_KEY, {
       expiresIn: "3h",
     });
     res.status(200).json({ token });

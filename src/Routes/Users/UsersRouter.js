@@ -9,7 +9,7 @@ const updateUser = require("../../Controllers/Users/updateUser");
 const deleteUser = require("../../Controllers/Users/deleteUser");
 const loginUser = require("../../Controllers/Users/loginUser");
 
-usersRouter.use("/login", loginUser);
+usersRouter.use("/login", loginUser); // ? OK
 
 usersRouter.get("/", getAllUsers); // ? OK
 
