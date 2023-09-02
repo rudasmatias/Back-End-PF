@@ -1,0 +1,37 @@
+[
+  {
+    "id_location": 1,
+    "provincia": "Provincia1",
+    "ciudad": "Ciudad 1",
+    "calle": "Calle 1",
+    "codigo_postal": "12345"
+  },
+  {
+    "id_location": 2,
+    "provincia": "Provincia2",
+    "ciudad": "Ciudad 2",
+    "calle": "Calle 2",
+    "codigo_postal": "54321"
+  },
+  {
+    "id_location": 3,
+    "provincia": "Provincia3",
+    "ciudad": "Ciudad 3",
+    "calle": "Calle 3",
+    "codigo_postal": "67890"
+  },
+  {
+    "id_location": 4,
+    "provincia": "Provincia4",
+    "ciudad": "Ciudad 4",
+    "calle": "Calle 4",
+    "codigo_postal": "98765"
+  },
+  {
+    "id_location": 5,
+    "provincia": "Provincia5",
+    "ciudad": "Ciudad 5",
+    "calle": "Calle 5",
+    "codigo_postal": "13579"
+  }
+]

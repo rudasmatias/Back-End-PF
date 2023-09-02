@@ -9,6 +9,8 @@ const {
   SpecificationValue,
   Images,
   Favoritos,
+  Location,
+  Order,
 } = require("../db");
 const { v4: uuidv4 } = require("uuid");
 const path = require("path");
@@ -39,6 +41,14 @@ const DB_connect = async () => {
     const usersFilePath = path.join(__dirname, "../../dataUsers.json");
     const usersRawData = fs.readFileSync(usersFilePath);
     const usersData = JSON.parse(usersRawData);
+
+    const locationFilePath = path.join(__dirname, "../../dataLocation.json");
+    const locationRawData = fs.readFileSync(locationFilePath);
+    const locationData = JSON.parse(locationRawData);
+
+    const orderFilePath = path.join(__dirname, "../../dataOrder.json");
+    const orderRawData = fs.readFileSync(orderFilePath);
+    const orderData = JSON.parse(orderRawData);
 
     if (!productData.results || !categoryData) {
       console.log("No results found in the data.");
@@ -170,6 +180,35 @@ const DB_connect = async () => {
           lastName,
           phoneNumber,
           id_role: newRole.id,
+        },
+      });
+    }
+
+    // console.log(locationData);
+    for (const locationItem of locationData) {
+      const { id_location, provincia, ciudad, calle, codigo_postal } =
+        locationItem;
+
+      const [location, created] = await Location.findOrCreate({
+        where: { id_location },
+        defaults: {
+          provincia,
+          ciudad,
+          calle,
+          codigo_postal,
+        },
+      });
+    }
+
+    // console.log(orderData);
+    for (const orderItem of orderData) {
+      const { id_order, status, package } = orderItem;
+
+      const [createdOrder, created] = await Order.findOrCreate({
+        where: { id_order },
+        defaults: {
+          status,
+          package,
         },
       });
     }
