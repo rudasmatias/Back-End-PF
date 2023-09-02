@@ -1,5 +1,6 @@
 const {
   Users,
+  Role,
   Products,
   Categories,
   Seccion,
@@ -147,6 +148,10 @@ const DB_connect = async () => {
     }
 
     for (const usersItem of usersData) {
+      const { role } = usersItem.role;
+      const [newRole, roleCreated] = await Role.findOrCreate({
+        where: { description: role },
+      });
       const {
         // id,
         username,
@@ -157,13 +162,14 @@ const DB_connect = async () => {
         phoneNumber,
       } = usersItem;
 
-      await Users.findOrCreate({
+      const [newUser, created] = await Users.findOrCreate({
         where: { email, username },
         defaults: {
           password,
           firstName,
           lastName,
           phoneNumber,
+          id_role: newRole.id,
         },
       });
     }

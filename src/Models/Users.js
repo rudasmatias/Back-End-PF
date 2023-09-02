@@ -51,7 +51,7 @@ class User extends Crud {
             allowNull: true,
           },
         },
-        { timestamps: false }
+        { paranoid: true }
       )
     );
   }

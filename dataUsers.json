@@ -7,7 +7,8 @@
     "firstName": "John",
     "lastName": "Doe",
     "phoneNumber": "123-456-7890",
-    "id_location": 1
+    "id_location": 1,
+    "role": { "id": 1, "role": "admin" }
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "firstName": "Jane",
     "lastName": "Smith",
     "phoneNumber": "987-654-3210",
-    "id_location": 2
+    "id_location": 2,
+    "role": { "id": 1, "role": "user" }
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "firstName": "Michael",
     "lastName": "Johnson",
     "phoneNumber": "857-852-6589",
-    "id_location": 3
+    "id_location": 3,
+    "role": { "id": 1, "role": "user" }
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "firstName": "Emily",
     "lastName": "Brown",
     "phoneNumber": "555-123-4567",
-    "id_location": 4
+    "id_location": 4,
+    "role": { "id": 1, "role": "user" }
   },
   {
     "id": 5,
@@ -47,6 +51,7 @@
     "firstName": "David",
     "lastName": "Jones",
     "phoneNumber": "111-222-3333",
-    "id_location": 5
+    "id_location": 5,
+    "role": { "id": 1, "role": "user" }
   }
 ]

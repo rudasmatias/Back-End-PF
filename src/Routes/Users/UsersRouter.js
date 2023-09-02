@@ -7,19 +7,22 @@ const getUserByEmailAndPassword = require("../../Controllers/Users/getUserByEmai
 const createUser = require("../../Controllers/Users/createUser");
 const updateUser = require("../../Controllers/Users/updateUser");
 const deleteUser = require("../../Controllers/Users/deleteUser");
+const loginUser = require("../../Controllers/Users/loginUser");
 
-usersRouter.get("/", getAllUsers);  // ? OK
+usersRouter.use("/login", loginUser);
 
-usersRouter.post("/", createUser);   // ? OK
+usersRouter.get("/", getAllUsers); // ? OK
 
-usersRouter.get("/profile", getUserByUsername);   // ? OK
+usersRouter.post("/", createUser); // ? OK
 
-usersRouter.get("/:id", getUserById);   // ? OK
+usersRouter.get("/profile", getUserByUsername); // ? OK
 
-usersRouter.post("/login", getUserByEmailAndPassword);   // ? OK
+usersRouter.get("/:id", getUserById); // ? OK
 
-usersRouter.put("/:id", updateUser);   // ? OK
+usersRouter.post("/login", getUserByEmailAndPassword); // ? OK
 
-usersRouter.delete("/:id", deleteUser);    // ? OK
+usersRouter.put("/:id", updateUser); // ? OK
+
+usersRouter.delete("/:id", deleteUser); // ? OK
 
 module.exports = usersRouter;

@@ -20,18 +20,18 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 ? path __filename: la variable basename contendrá el nombre del archivo sin la ruta del directorio, es decir, solo el nombre del archivo en sí. Esto puede ser útil en escenarios donde necesitas referenciar el nombre del archivo actual sin la ruta completa*/
 
 //*mySQL
-// const sequelize = new Sequelize(
-//   `mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-//   { logging: false, native: false, host: "localhost", dialect: "mysql" }
-// );
-//*Postgress
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-  {
-    logging: false,
-    native: false,
-  }
+  `mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  { logging: false, native: false, host: "localhost", dialect: "mysql" }
 );
+//*Postgress
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+//   {
+//     logging: false,
+//     native: false,
+//   }
+// );
 
 const basename = path.basename(__filename);
 
@@ -68,6 +68,7 @@ sequelize.models = Object.fromEntries(capsEntries);
  * Se desestructuran los modelos creados en Sequelize para utilizarlo en la definición de la asociaciones */
 const {
   Users,
+  Role,
   Products,
   Categories,
   Seccion,
@@ -107,11 +108,10 @@ Favoritos.belongsTo(Products);
 Users.hasMany(Favoritos);
 Favoritos.belongsTo(Users);
 
+Role.hasMany(Users, { foreignKey: "id_role" });
+Users.belongsTo(Role, { foreignKey: "id_role" });
+
 //*Relación MacroCategory-Categories
-// MacroCategory.hasMany(Categories, {foreignKey: id_macroCategory})
-// Categories.belongsTo(MacroCategory, {foreignKey: id_macroCategory})
-// Products.belongsTo(Agrupador, { foreignKey: "AgrupadorIdAgrupador" });
-// Agrupador.hasMany(Products);
 
 MacroCategory.hasMany(Categories, { foreignKey: "id_macroCategory" });
 Categories.belongsTo(MacroCategory, { foreignKey: "id_macroCategory" });
