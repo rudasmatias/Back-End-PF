@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "username": "user1",
+    "email": "user1@example.com",
+    "password": "password123",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phoneNumber": "123-456-7890",
+    "id_location": 1,
+    "role": { "id": 1, "role": "admin" }
+  },
+  {
+    "id": 2,
+    "username": "user2",
+    "email": "user2@example.com",
+    "password": "securepass",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "phoneNumber": "987-654-3210",
+    "id_location": 2,
+    "role": { "id": 1, "role": "user" }
+  },
+  {
+    "id": 3,
+    "username": "user3",
+    "email": "user3@example.com",
+    "password": "mypassword",
+    "firstName": "Michael",
+    "lastName": "Johnson",
+    "phoneNumber": "857-852-6589",
+    "id_location": 3,
+    "role": { "id": 1, "role": "user" }
+  },
+  {
+    "id": 4,
+    "username": "user4",
+    "email": "user4@example.com",
+    "password": "securepass456",
+    "firstName": "Emily",
+    "lastName": "Brown",
+    "phoneNumber": "555-123-4567",
+    "id_location": 4,
+    "role": { "id": 1, "role": "user" }
+  },
+  {
+    "id": 5,
+    "username": "user5",
+    "email": "user5@example.com",
+    "password": "mysecretpass",
+    "firstName": "David",
+    "lastName": "Jones",
+    "phoneNumber": "111-222-3333",
+    "id_location": 5,
+    "role": { "id": 1, "role": "user" }
+  }
+]

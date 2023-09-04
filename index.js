@@ -5,8 +5,8 @@ const PORT = 3001;
 
 conn
   .sync({ force: true })
-  .then(() => {
-    DB_connect();
+  .then(async () => {
+    await DB_connect();
     server.listen(PORT, () => {
       console.log(`♥ Server listening on port: ${PORT} ♥`);
     });

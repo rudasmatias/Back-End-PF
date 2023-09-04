@@ -1,4 +1,4 @@
-const { Products } = require("../../db");
+const { Products, Specification, SpecificationValue, Images } = require("../../db");
 
 const getProductById = async (req, res) => {
   try {
@@ -6,7 +6,8 @@ const getProductById = async (req, res) => {
 
     const product = await Products.findOne({
       where: { id_producto },
-    });
+      include: [{ model: SpecificationValue, attributes: ['value', 'id'], include: [{model: Specification, attributes: ['name', 'id_specification']}], through: {attributes: []}}, { model: Images, attributes: ['url']}] }
+    );
 
     if (!product) throw new Error("Product Not Found");
 

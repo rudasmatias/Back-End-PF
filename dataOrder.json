@@ -1,0 +1,79 @@
+[
+  {
+    "id_order": 1,
+    "status": "Processing",
+    "package": {
+      "items": [
+        {
+          "name": "Product 3",
+          "quantity": 4
+        },
+        {
+          "name": "Product 4",
+          "quantity": 1
+        }
+      ],
+      "total_price": 75.0
+    }
+  },
+  {
+    "id_order": 2,
+    "status": "Shipped",
+    "package": {
+      "items": [
+        {
+          "name": "Product 5",
+          "quantity": 2
+        },
+        {
+          "name": "Product 6",
+          "quantity": 2
+        }
+      ],
+      "total_price": 50.0
+    }
+  },
+  {
+    "id_order": 3,
+    "status": "Delivered",
+    "package": {
+      "items": [
+        {
+          "name": "Product 7",
+          "quantity": 1
+        }
+      ],
+      "total_price": 25.0
+    }
+  },
+  {
+    "id_order": 4,
+    "status": "Pending",
+    "package": {
+      "items": [
+        {
+          "name": "Product 8",
+          "quantity": 3
+        },
+        {
+          "name": "Product 9",
+          "quantity": 2
+        }
+      ],
+      "total_price": 90.0
+    }
+  },
+  {
+    "id_order": 5,
+    "status": "Cancelled",
+    "package": {
+      "items": [
+        {
+          "name": "Product 10",
+          "quantity": 1
+        }
+      ],
+      "total_price": 10.0
+    }
+  }
+]

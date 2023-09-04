@@ -20,18 +20,18 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 ? path __filename: la variable basename contendrá el nombre del archivo sin la ruta del directorio, es decir, solo el nombre del archivo en sí. Esto puede ser útil en escenarios donde necesitas referenciar el nombre del archivo actual sin la ruta completa*/
 
 //*mySQL
-const sequelize = new Sequelize(
-  `mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-  { logging: false, native: false, host: "localhost", dialect: "mysql" }
-);
-//*Postgress
 // const sequelize = new Sequelize(
-//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-//   {
-//     logging: false,
-//     native: false,
-//   }
+//   `mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+//   { logging: false, native: false, host: "localhost", dialect: "mysql" }
 // );
+//*Postgress
+const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  {
+    logging: false,
+    native: false,
+  }
+);
 
 const basename = path.basename(__filename);
 
@@ -49,7 +49,7 @@ fs.readdirSync(path.join(__dirname, "/models"))
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
   )
   .forEach((file) => {
-    const modelName = file.replace(".js", "") + "Model";
+    const modelName = file.replace(".js", "").toLowerCase() + "Model";
     const Model = require(path.join(__dirname, "/models", file));
     modelInstances[modelName] = new Model(sequelize);
   });
@@ -68,6 +68,7 @@ sequelize.models = Object.fromEntries(capsEntries);
  * Se desestructuran los modelos creados en Sequelize para utilizarlo en la definición de la asociaciones */
 const {
   Users,
+  Role,
   Products,
   Categories,
   Seccion,
@@ -75,6 +76,9 @@ const {
   Specification,
   SpecificationValue,
   Images,
+  Favoritos,
+  Location,
+  Order,
 } = sequelize.models;
 
 Categories.hasMany(Products, { foreignKey: "id_categoria" });
@@ -82,9 +86,6 @@ Products.belongsTo(Categories, { foreignKey: "id_categoria" });
 
 Products.hasMany(Images, { foreignKey: "id_product" });
 Images.belongsTo(Products, { foreignKey: "id_product" });
-
-// Products.belongsTo(Seccion, { foreignKey: "SeccionIdSeccion" });
-// Seccion.hasMany(Products);
 
 Products.belongsToMany(SpecificationValue, {
   through: "product-specificationValue",
@@ -101,8 +102,35 @@ Specification.hasMany(SpecificationValue, {
 SpecificationValue.belongsTo(Specification, {
   foreignKey: "id_specification",
 });
-// Products.belongsTo(Agrupador, { foreignKey: "AgrupadorIdAgrupador" });
-// Agrupador.hasMany(Products);
+
+Products.belongsToMany(Users, { through: Favoritos });
+Favoritos.belongsTo(Products);
+
+Users.hasMany(Favoritos);
+Favoritos.belongsTo(Users);
+
+Role.hasMany(Users, { foreignKey: "id_role" });
+Users.belongsTo(Role, { foreignKey: "id_role" });
+
+//*Relación MacroCategory-Categories
+
+MacroCategory.hasMany(Categories, { foreignKey: "id_macroCategory" });
+Categories.belongsTo(MacroCategory, { foreignKey: "id_macroCategory" });
+
+Categories.belongsToMany(Specification, {
+  through: "category-specification",
+  timestamps: false,
+});
+Specification.belongsToMany(Categories, {
+  through: "category-specification",
+  timestamps: false,
+});
+
+Location.belongsTo(Users, { foreignKey: "id_location" });
+Users.belongsTo(Location, { foreignKey: "id_location" });
+
+Order.hasMany(Users, { foreignKey: "id_order" });
+Users.belongsTo(Order, { foreignKey: "id_order" });
 
 /*
 ! Exporto los modelos para que puedan ser utilizados en otros archivos de la aplicación */

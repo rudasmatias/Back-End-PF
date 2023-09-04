@@ -1,8 +1,9 @@
 const { Router } = require("express");
-const aggregatorRouter = Router();
-const getAllaggregator = require("../../Controllers/Agrupador/getAllaggregator");
-const getProductosByAgrupador = require("../../Controllers/Agrupador/getProductosByAgrupador");
-const getProductsOfOneAggregatorAndSection = require("../../Controllers/Agrupador/getProductsOfOneAggregatorAndSection");
+const getAllMacroCategories = require("../../Controllers/MacroCategories/getAllMacroCategories");
+const getProductosByAgrupador = require("../../Controllers/MacroCategories/getProductosByAgrupador");
+const getProductsOfOneAggregatorAndSection = require("../../Controllers/MacroCategories/getProductsOfOneAggregatorAndSection");
+
+const macroCategoryRouter = Router();
 
 // const getAllProductsOfOneSeccion = require("../../Controllers/Seccion/getAllProductsOfOneSeccion");
 // const getAllProductsOfOneCategoryAndSection = require("../../Controllers/Seccion/getAllProductsOfOneCategoryAndSection");
@@ -13,9 +14,9 @@ const getProductsOfOneAggregatorAndSection = require("../../Controllers/Agrupado
 //   const { nombre } = req.query;
 //   !nombre ? getAllCategories(req, res) : getCategoryByName(req, res);
 // });
-aggregatorRouter.get("/", getAllaggregator);
-aggregatorRouter.get("/:id_agrupador/productos", getProductosByAgrupador);
-aggregatorRouter.get(
+macroCategoryRouter.get("/", getAllMacroCategories);
+macroCategoryRouter.get("/:id_agrupador/productos", getProductosByAgrupador);
+macroCategoryRouter.get(
   "/:id_agrupador/:id_seccion/productos",
   getProductsOfOneAggregatorAndSection
 );
@@ -28,4 +29,4 @@ aggregatorRouter.get(
 // seccionRouter.get("/:id_categoria", getCategoryById);
 // seccionRouter.get("/:id_categoria/productos", getProductsOfOneCategory);
 
-module.exports = aggregatorRouter;
+module.exports = macroCategoryRouter;
