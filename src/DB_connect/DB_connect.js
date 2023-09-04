@@ -159,9 +159,15 @@ const DB_connect = async () => {
 
     for (const usersItem of usersData) {
       const { role } = usersItem.role;
+      // const { order } = usersItem.order;
+
       const [newRole, roleCreated] = await Role.findOrCreate({
         where: { description: role },
       });
+
+      // const [newOrder, orderCreated] = await Order.findOrCreate({
+      //   where: { id_order: order },
+      // });
       const {
         // id,
         username,
@@ -180,6 +186,7 @@ const DB_connect = async () => {
           lastName,
           phoneNumber,
           id_role: newRole.id,
+          // id_order: newOrder,
         },
       });
     }
@@ -204,16 +211,25 @@ const DB_connect = async () => {
     for (const orderItem of orderData) {
       const { id_order, status, package } = orderItem;
 
-      const [createdOrder, created] = await Order.findOrCreate({
-        where: { id_order },
-        defaults: {
-          status,
-          package,
-        },
-      });
+      try {
+        const [createdOrder, created] = await Order.findOrCreate({
+          where: { id_order },
+          defaults: {
+            status,
+            package,
+          },
+        });
+
+        // if (created) {
+        //   console.log(`Order ${id_order} created successfully.`);
+        // } else {
+        //   console.log(`Order ${id_order} already exists.`);
+        // }
+      } catch (error) {
+        console.error(`Error inserting order ${id_order}:`, error);
+      }
     }
 
-    await Favoritos.sync();
     await Users.sync();
     await Products.sync();
     await Categories.sync();
@@ -222,6 +238,9 @@ const DB_connect = async () => {
     await Specification.sync();
     await SpecificationValue.sync();
     await Images.sync();
+    await Location.sync();
+    // await Order.sync();
+    await Favoritos.sync();
 
     console.log("♥ Database Created... ♥");
   } catch (error) {

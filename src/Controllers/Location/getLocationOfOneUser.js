@@ -1,20 +1,18 @@
-const { Location, Users } = require('../../db');
+const { Location, Users } = require("../../db");
 
-const getLocationForUser = async (req, res) => {
+const getLocationOfOneUser = async (req, res) => {
   try {
-    const userId = req.params.userId; 
-
-  
-    const user = await Users.findByPk(userId);
+    const { id } = req.params;
+    console.log(id);
+    const user = await Users.findByPk(id);
 
     if (!user) throw Error("User Not Found");
 
-
     const location = await Location.findOne({
-      where: { UserId: userId },
+      where: { id_location: id },
     });
 
-    if (!location) throw Error("Location Not Found for User");
+    if (!location) throw Error("Location Not Found for this User");
 
     return res.status(200).json(location);
   } catch (error) {
@@ -22,4 +20,4 @@ const getLocationForUser = async (req, res) => {
   }
 };
 
-module.exports = getLocationForUser;
+module.exports = getLocationOfOneUser;

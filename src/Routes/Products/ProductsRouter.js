@@ -10,8 +10,6 @@ const postProducts = require("../../Controllers/Products/postProducts");
 const restoreProducts = require("../../Controllers/Products/restoreProducts");
 const updateProducts = require("../../Controllers/Products/updateProducts");
 
-
-
 productsRouter.get("/", (req, res) => {
   const { nombre } = req.query;
   !nombre ? getAllProducts(req, res) : getProductByName(req, res);

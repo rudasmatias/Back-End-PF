@@ -126,11 +126,11 @@ Specification.belongsToMany(Categories, {
   timestamps: false,
 });
 
-Users.hasOne(Location, { foreignKey: "user_id" });
-Location.belongsTo(Users, { foreignKey: "user_id" });
+Location.belongsTo(Users, { foreignKey: "id_location" });
+Users.belongsTo(Location, { foreignKey: "id_location" });
 
-Users.hasOne(Order, { foreignKey: "id_order" });
 Order.hasMany(Users, { foreignKey: "id_order" });
+Users.belongsTo(Order, { foreignKey: "id_order" });
 
 /*
 ! Exporto los modelos para que puedan ser utilizados en otros archivos de la aplicación */
