@@ -9,7 +9,7 @@ conn
   .then(async () => {
     console.log("♥ Conectado a la base de datos ♥");
     await DB_connect();
-    server.listen(PORT, () => {
+    server.listen(PORT, "0.0.0.0", () => {
       console.log(`♥ Server listening on port: ${PORT} ♥`);
     });
   })
