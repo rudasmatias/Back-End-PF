@@ -6,6 +6,7 @@
 */
 
 const { DataTypes } = require("sequelize");
+const Crud = require("./Crud");
 
 /*
 ? Exporta una función anónima que toma un objeto sequelize como parámetro
@@ -14,20 +15,25 @@ const { DataTypes } = require("sequelize");
 ? Se establece timestapms deshabilitando automáticamente los campos de marca de tiempo (createdAt y updatedAt) en el modelo "User".
 */
 
-module.exports = (sequelize) => {
-  sequelize.define(
-    "Seccion",
-    {
-      id_seccion: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      nombre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-    },
-    { timestamps: false }
-  );
-};
+class Seccion extends Crud {
+  constructor(sequelize) {
+    super(
+      sequelize.define(
+        "Seccion",
+        {
+          id_seccion: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+          },
+          nombre: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+        },
+        { timestamps: false }
+      )
+    );
+  }
+}
+module.exports = Seccion;

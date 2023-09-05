@@ -19,6 +19,12 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 ? Deshabilito el uso de la extensión nativa de PostgreSQL con native: false
 ? path __filename: la variable basename contendrá el nombre del archivo sin la ruta del directorio, es decir, solo el nombre del archivo en sí. Esto puede ser útil en escenarios donde necesitas referenciar el nombre del archivo actual sin la ruta completa*/
 
+//*mySQL
+// const sequelize = new Sequelize(
+//   `mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+//   { logging: false, native: false, host: "localhost", dialect: "mysql" }
+// );
+//*Postgress
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
   {
@@ -32,6 +38,7 @@ const basename = path.basename(__filename);
 /*
 ? Carga las definiciones de modelos encontrados en el set modelDefiners en lugar de un array */
 const modelDefiners = new Set();
+const modelInstances = new Object();
 
 /*
 ? Leo el archivo /models y filtro los archivos que no empiezan con "." y que sí finalizan con la extensión "".js"*/
@@ -42,12 +49,14 @@ fs.readdirSync(path.join(__dirname, "/models"))
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
   )
   .forEach((file) => {
-    modelDefiners.add(require(path.join(__dirname, "/models", file)));
+    const modelName = file.replace(".js", "").toLowerCase() + "Model";
+    const Model = require(path.join(__dirname, "/models", file));
+    modelInstances[modelName] = new Model(sequelize);
   });
-
+//*{userModel, }
 /*
 ? Itero sobre los modelos y las asocia a la instancia de Sequelize para asociar el modelo a la base de datos */
-modelDefiners.forEach((model) => model(sequelize));
+// modelDefiners.forEach((model) => model(sequelize));
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
   entry[0][0].toUpperCase() + entry[0].slice(1),
@@ -57,20 +66,76 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 /*
  * Se desestructuran los modelos creados en Sequelize para utilizarlo en la definición de la asociaciones */
-const { Users, Products, Categories, Seccion, Agrupador } = sequelize.models;
+const {
+  Users,
+  Role,
+  Products,
+  Categories,
+  Seccion,
+  MacroCategory,
+  Specification,
+  SpecificationValue,
+  Images,
+  Favoritos,
+  Location,
+  Order,
+} = sequelize.models;
 
-Products.belongsTo(Categories, { foreignKey: "CategoryIdCategoria" });
-Categories.hasMany(Products);
+Categories.hasMany(Products, { foreignKey: "id_categoria" });
+Products.belongsTo(Categories, { foreignKey: "id_categoria" });
 
-Products.belongsTo(Seccion, { foreignKey: "SeccionIdSeccion" });
-Seccion.hasMany(Products);
+Products.hasMany(Images, { foreignKey: "id_product" });
+Images.belongsTo(Products, { foreignKey: "id_product" });
 
-// Products.belongsTo(Agrupador, { foreignKey: "AgrupadorIdAgrupador" });
-// Agrupador.hasMany(Products);
+Products.belongsToMany(SpecificationValue, {
+  through: "product-specificationValue",
+  timestamps: false,
+});
+SpecificationValue.belongsToMany(Products, {
+  through: "product-specificationValue",
+  timestamps: false,
+});
+
+Specification.hasMany(SpecificationValue, {
+  foreignKey: "id_specification",
+});
+SpecificationValue.belongsTo(Specification, {
+  foreignKey: "id_specification",
+});
+
+Products.belongsToMany(Users, { through: Favoritos });
+Favoritos.belongsTo(Products);
+
+Users.hasMany(Favoritos);
+Favoritos.belongsTo(Users);
+
+Role.hasMany(Users, { foreignKey: "id_role" });
+Users.belongsTo(Role, { foreignKey: "id_role" });
+
+//*Relación MacroCategory-Categories
+
+MacroCategory.hasMany(Categories, { foreignKey: "id_macroCategory" });
+Categories.belongsTo(MacroCategory, { foreignKey: "id_macroCategory" });
+
+Categories.belongsToMany(Specification, {
+  through: "category-specification",
+  timestamps: false,
+});
+Specification.belongsToMany(Categories, {
+  through: "category-specification",
+  timestamps: false,
+});
+
+Location.belongsTo(Users, { foreignKey: "id_location" });
+Users.belongsTo(Location, { foreignKey: "id_location" });
+
+Order.hasMany(Users, { foreignKey: "id_order" });
+Users.belongsTo(Order, { foreignKey: "id_order" });
 
 /*
 ! Exporto los modelos para que puedan ser utilizados en otros archivos de la aplicación */
 module.exports = {
+  ...modelInstances,
   ...sequelize.models,
   conn: sequelize,
 };
