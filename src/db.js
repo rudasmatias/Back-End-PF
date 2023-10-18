@@ -34,10 +34,13 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, POSTGRES_URL_NON_POOLING } =
 //   }
 // );
 //*Postgress Deploy
-const sequelize = new Sequelize(POSTGRES_URL_NON_POOLING, {
-  logging: false,
-  native: false,
-});
+const sequelize = new Sequelize(
+  "postgresql://postgres:yeg0aUtzmNk8vIHtzxBM@containers-us-west-35.railway.app:7334/railway",
+  {
+    logging: false,
+    native: false,
+  }
+);
 
 const basename = path.basename(__filename);
 
