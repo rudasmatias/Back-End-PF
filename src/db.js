@@ -12,7 +12,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, POSTGRES_URL } = process.env;
 
 /*
 * Creo la instancia de la clase Sequelize para utilizar opciones como loggin false que se utiliza para desactivar el registro de consultas
@@ -33,7 +33,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 //   }
 // );
 //*Postgress Deploy
-const sequelize = new Sequelize(DB_DEPLOY, {
+const sequelize = new Sequelize(POSTGRES_URL, {
   logging: false,
   native: false,
 });
